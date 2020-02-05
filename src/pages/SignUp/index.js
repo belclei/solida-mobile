@@ -1,12 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Background from '~/components/Background';
 import Logo from '~/components/Logo';
 
 import { Container, Form, FormInput, SubmitButton } from './styles';
+import { signInRequest } from '~/store/modules/auth/actions';
 
 export default function SignUp() {
+  const dispatch = useDispatch();
   const passwordRef = useRef();
-  function handleSubmit() {}
+
+  const [code, setCode] = useState('');
+  const [password, setPassword] = useState('');
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleSubmit() {
+    dispatch(signInRequest(code, password));
+  }
   return (
     <Background>
       <Container>
@@ -19,6 +29,8 @@ export default function SignUp() {
             placeholder="Informe seu código"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            value={code}
+            onChangeText={setCode}
           />
           <FormInput
             icon="lock"
@@ -27,8 +39,12 @@ export default function SignUp() {
             ref={passwordRef}
             returnKeyType="send"
             onSubmitEditing={handleSubmit}
+            value={password}
+            onChangeText={setPassword}
           />
-          <SubmitButton onPress={handleSubmit}>Acessar</SubmitButton>
+          <SubmitButton loading={loading} onPress={handleSubmit}>
+            Acessar
+          </SubmitButton>
         </Form>
       </Container>
     </Background>
