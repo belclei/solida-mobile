@@ -3,10 +3,11 @@ import { TouchableOpacity, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Background from '~/components/Background';
 
-import { Container, Link, Header, Origin, Content } from './styles';
+import { Container, Link, Header, Origin, Content, Time } from './styles';
 
 export default function ReportDetail({ navigation }) {
   const data = navigation.getParam('data');
+  const dateParsed = navigation.getParam('dateParsed');
   console.tron.warn(data.link);
   return (
     <Background>
@@ -18,6 +19,7 @@ export default function ReportDetail({ navigation }) {
           )}
         </Header>
         <Content>{data.content}</Content>
+        <Time>{dateParsed}</Time>
       </Container>
     </Background>
   );

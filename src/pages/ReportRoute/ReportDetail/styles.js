@@ -27,3 +27,10 @@ export const Content = styled.Text`
   color: #ddd;
   margin: 20px;
 `;
+
+export const Time = styled.Text`
+  align-self: flex-end;
+  margin-right: 16
+  color: #999;
+  font-size: 11px;
+`;

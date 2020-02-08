@@ -10,7 +10,9 @@ export default function Report({ data, navigation }) {
     });
   }, [data.updatedAt]);
   return (
-    <Container onPress={() => navigation.navigate('ReportDetail', { data })}>
+    <Container
+      onPress={() => navigation.navigate('ReportDetail', { data, dateParsed })}
+    >
       <Title>{data.title}</Title>
       <Details>
         <Origin>{data.origin}</Origin>
