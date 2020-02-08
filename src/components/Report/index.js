@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { parseISO, formatRelative } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+import { Container, Title, Origin, Time, Details } from './styles';
 
-import { Container, Title, Origin } from './styles';
-
-export default function Report({ title, origin }) {
+export default function Report({ data, navigation }) {
+  const dateParsed = useMemo(() => {
+    return formatRelative(parseISO(data.updatedAt), new Date(), {
+      locale: pt,
+    });
+  }, [data.updatedAt]);
   return (
-    <Container>
-      <Title>Título: {title}</Title>
-      <Origin>Origem: {origin}</Origin>
+    <Container onPress={() => navigation.navigate('ReportDetail', { data })}>
+      <Title>{data.title}</Title>
+      <Details>
+        <Origin>{data.origin}</Origin>
+        <Time>{dateParsed}</Time>
+      </Details>
     </Container>
   );
 }
