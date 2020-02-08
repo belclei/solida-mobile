@@ -12,16 +12,16 @@ export const Container = styled(RectButton)`
   align-items: flex-start;
   justify-content: space-between;
 `;
-export const Details = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
 export const Title = styled.Text`
   font-weight: bold;
   font-size: 14px;
   color: #333;
+`;
+export const Details = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
 `;
 export const Origin = styled.Text`
   flex: 1;
@@ -31,5 +31,5 @@ export const Origin = styled.Text`
 
 export const Time = styled.Text`
   color: #999;
-  font-size: 13px;
+  font-size: 11px;
 `;
