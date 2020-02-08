@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SignUp from './pages/SignUp';
 import Videos from './pages/Videos';
 import Orders from './pages/Orders';
+import Profile from './pages/Profile';
 import Reports from './pages/ReportRoute/Reports';
 import ReportDetail from './pages/ReportRoute/ReportDetail';
 
@@ -39,6 +40,7 @@ export default (signedIn = false) =>
             },
             Videos,
             Orders,
+            Profile,
           },
           {
             tabBarOptions: {
