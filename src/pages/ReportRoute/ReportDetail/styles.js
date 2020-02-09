@@ -17,7 +17,7 @@ export const Origin = styled.Text`
   color: #fff;
   font-weight: bold;
 `;
-export const Link = styled.Text`
+export const A = styled.Text`
   font-size: 16px;
   color: #ccc;
   text-decoration-line: underline;
@@ -30,7 +30,7 @@ export const Content = styled.Text`
 
 export const Time = styled.Text`
   align-self: flex-end;
-  margin-right: 16
+  margin-right: 16px;
   color: #999;
   font-size: 11px;
 `;

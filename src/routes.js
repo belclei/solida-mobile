@@ -10,10 +10,19 @@ import Profile from './pages/Profile';
 import Reports from './pages/ReportRoute/Reports';
 import ReportDetail from './pages/ReportRoute/ReportDetail';
 
-export default (signedIn = false) =>
-  createAppContainer(
+export default (signed = false, profile = null) => {
+  let initialRoute = 'Sign';
+  if (signed && profile !== null) {
+    if (profile.password_expired) {
+      initialRoute = 'Profile';
+    } else {
+      initialRoute = 'App';
+    }
+  }
+  return createAppContainer(
     createSwitchNavigator(
       {
+        Profile,
         Sign: createSwitchNavigator({ SignUp }),
         App: createBottomTabNavigator(
           {
@@ -51,11 +60,13 @@ export default (signedIn = false) =>
                 backgroundColor: '#7159cc',
               },
             },
+            initialRouteName: 'ReportRoute',
           }
         ),
       },
       {
-        initialRouteName: signedIn ? 'App' : 'Sign',
+        initialRouteName: initialRoute,
       }
     )
   );
+};
