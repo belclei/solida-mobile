@@ -5,7 +5,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SignUp from './pages/SignUp';
 import Videos from './pages/Videos';
-import Orders from './pages/Orders';
+import Orders from './pages/OrderRoute/Orders';
+import NewOrder from './pages/OrderRoute/NewOrder';
 import Profile from './pages/Profile';
 import Reports from './pages/ReportRoute/Reports';
 import ReportDetail from './pages/ReportRoute/ReportDetail';
@@ -48,7 +49,30 @@ export default (signed = false, profile = null) => {
               },
             },
             Videos,
-            Orders,
+            OrderRoute: {
+              screen: createStackNavigator(
+                { Orders, NewOrder },
+                {
+                  defaultNavigationOptions: {
+                    headerTransparent: true,
+                    headerTintColor: '#FFF',
+                    headerLeftContainerStyle: {
+                      marginLeft: 20,
+                    },
+                    headerRightContainerStyle: {
+                      marginRight: 20,
+                    },
+                  },
+                }
+              ),
+              navigationOptions: {
+                tabBarVisible: true,
+                tabBarLabel: 'Pedidos',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="tasks" size={20} color={tintColor} />
+                ),
+              },
+            },
             Profile,
           },
           {

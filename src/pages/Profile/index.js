@@ -61,7 +61,7 @@ export default function Profile() {
             autoCapitalize="none"
             placeholder="Nome completo"
             returnKeyType="next"
-            onSubmitEditing={() => oldPassword.current.focus()}
+            onSubmitEditing={() => oldPasswordRef.current.focus()}
             value={name}
             onChangeText={setName}
           />
