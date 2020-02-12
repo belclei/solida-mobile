@@ -24,7 +24,7 @@ export default function SignUp() {
         <Form>
           <FormInput
             icon="user"
-            keyboardType="decimal-pad"
+            keyboardType="number-pad"
             autoCorrect={false}
             placeholder="Informe seu código"
             returnKeyType="next"
