@@ -6,11 +6,13 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
 import Background from '~/components/Background';
 import api from '~/services/api';
+import { saveAddress } from '~/store/modules/address/actions';
 
 import {
   Container,
@@ -22,15 +24,24 @@ import {
 } from './styles';
 
 export default function NewOrder({ navigation }) {
+  const dispatch = useDispatch();
+
+  const _address = useSelector(state => state.address.address);
+  const _number = useSelector(state => state.address.number);
+  const _compl = useSelector(state => state.address.compl);
+  const _city = useSelector(state => state.address.city);
+  const _UF = useSelector(state => state.address.UF);
+  const _CEP = useSelector(state => state.address.CEP);
+
   const [forms, setForms] = useState([]);
   const [selectedForm, setSelectedForm] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
-  const [compl, setCompl] = useState('');
-  const [city, setCity] = useState('');
-  const [UF, setUF] = useState('');
-  const [CEP, setCEP] = useState('');
+  const [address, setAddress] = useState(_address || '');
+  const [number, setNumber] = useState(_number || '');
+  const [compl, setCompl] = useState(_compl || '');
+  const [city, setCity] = useState(_city || '');
+  const [UF, setUF] = useState(_UF || '');
+  const [CEP, setCEP] = useState(_CEP || '');
 
   const amountRef = useRef();
   const addressRef = useRef();
@@ -71,6 +82,7 @@ export default function NewOrder({ navigation }) {
         amount,
       });
       Alert.alert('Sucesso!', 'Sua solicitação foi realizada');
+      dispatch(saveAddress(address, number, compl, city, UF, CEP));
       navigation.goBack();
     } catch (err) {
       console.tron.error(err);

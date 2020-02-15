@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'solida_fasolo',
       storage: AsyncStorage,
-      whitelist: ['auth', 'user'],
+      whitelist: ['auth', 'user', 'address'],
     },
     reducers
   );
