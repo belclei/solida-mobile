@@ -1,17 +1,44 @@
-import React, { useState, useMemo } from 'react';
-import { TouchableOpacity, Alert } from 'react-native';
+import React, { useState, useMemo, useRef } from 'react';
+import {
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Alert,
+  View,
+  ScrollView,
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
 import Background from '~/components/Background';
 import api from '~/services/api';
 
-import { Container, Tip, Label, FormAmountInput, SubmitButton } from './styles';
+import {
+  Container,
+  Tip,
+  Label,
+  FormAmountInput,
+  SubmitButton,
+  Form,
+} from './styles';
 
 export default function NewOrder({ navigation }) {
   const [forms, setForms] = useState([]);
   const [selectedForm, setSelectedForm] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
+  const [compl, setCompl] = useState('');
+  const [city, setCity] = useState('');
+  const [UF, setUF] = useState('');
+  const [CEP, setCEP] = useState('');
+
+  const amountRef = useRef();
+  const addressRef = useRef();
+  const numberRef = useRef();
+  const cityRef = useRef();
+  const complRef = useRef();
+  const UFRef = useRef();
+  const CEPRef = useRef();
 
   useMemo(() => {
     async function loadForms() {
@@ -53,39 +80,114 @@ export default function NewOrder({ navigation }) {
       );
     }
   }
-
+  function handleCEPChanges(value) {
+    // Remove todos os caracteres não numéricos
+    let newValue = value.replace(/\D/g, '');
+    // Inclui hífen após o 5º número
+    newValue = newValue.replace(/(\d{5})(\d)/, '$1-$2');
+    setCEP(newValue);
+  }
   return (
     <Background>
-      <Container>
-        <Tip>
-          Preencha abaixo o endereço e as quantidades de formulários que deseja
-        </Tip>
-        <Dropdown
-          label="Nome do formulário"
-          baseColor="#FFF"
-          textColor="#FFF"
-          selectedItemColor="#222"
-          onChangeText={value => setSelectedForm(value)}
-          containerStyle={{
-            paddingHorizontal: 20,
-            marginTop: 20,
-            marginBottom: 5,
-          }}
-          data={forms}
-          itemCount={forms.length}
-          dropdownPosition={0}
-        />
-        <Label>Quantidade:</Label>
-        <FormAmountInput
-          placeholder="000"
-          keyboardType="number-pad"
-          returnKeyType="next"
-          maxLength={3}
-          onChangeText={setAmount}
-        />
-        <Label>Endereço:</Label>
-        <SubmitButton onPress={handleSubmit}>Solicitar</SubmitButton>
-      </Container>
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <Container>
+          <ScrollView style={{ flex: 1 }}>
+            <Tip>
+              Preencha abaixo o endereço e as quantidades de formulários que
+              deseja
+            </Tip>
+            <Form>
+              <Dropdown
+                label="Nome do formulário"
+                baseColor="#FFF"
+                textColor="#FFF"
+                selectedItemColor="#222"
+                onChangeText={value => setSelectedForm(value)}
+                containerStyle={{
+                  paddingHorizontal: 20,
+                  marginTop: 20,
+                  marginBottom: 5,
+                }}
+                data={forms}
+                itemCount={forms.length}
+                dropdownPosition={0}
+              />
+              <Label>Quantidade de formulários:</Label>
+              <FormAmountInput
+                placeholder="000"
+                keyboardType="number-pad"
+                returnKeyType="next"
+                maxLength={3}
+                onChangeText={setAmount}
+                ref={amountRef}
+                onSubmitEditing={() => addressRef.current.focus()}
+              />
+              <Label>Endereço de destino:</Label>
+              <FormAmountInput
+                placeholder="Endereço"
+                autoCorrect={false}
+                autoCapitalize="words"
+                ref={addressRef}
+                returnKeyType="next"
+                onSubmitEditing={() => numberRef.current.focus()}
+                value={address}
+                onChangeText={setAddress}
+              />
+              <FormAmountInput
+                placeholder="Número"
+                maxLength={5}
+                keyboardType="number-pad"
+                ref={numberRef}
+                returnKeyType="next"
+                onSubmitEditing={() => complRef.current.focus()}
+                value={number}
+                onChangeText={setNumber}
+              />
+              <FormAmountInput
+                placeholder="Complemento"
+                autoCorrect={false}
+                ref={complRef}
+                returnKeyType="next"
+                onSubmitEditing={() => cityRef.current.focus()}
+                value={compl}
+                onChangeText={setCompl}
+              />
+              <FormAmountInput
+                placeholder="Cidade"
+                ref={cityRef}
+                autoCapitalize="words"
+                returnKeyType="next"
+                onSubmitEditing={() => UFRef.current.focus()}
+                value={city}
+                onChangeText={setCity}
+              />
+              <FormAmountInput
+                placeholder="UF"
+                maxLength={2}
+                autoCorrect={false}
+                autoCapitalize="characters"
+                ref={UFRef}
+                returnKeyType="next"
+                onSubmitEditing={() => CEPRef.current.focus()}
+                value={UF}
+                onChangeText={setUF}
+              />
+              <FormAmountInput
+                placeholder="CEP"
+                keyboardType="number-pad"
+                maxLength={9}
+                ref={CEPRef}
+                returnKeyType="send"
+                onSubmitEditing={handleSubmit}
+                value={CEP}
+                onChangeText={handleCEPChanges}
+              />
+              <SubmitButton onPress={handleSubmit}>Solicitar</SubmitButton>
+              <View style={{ flex: 1 }} />
+            </Form>
+          </ScrollView>
+        </Container>
+      </KeyboardAvoidingView>
     </Background>
   );
 }
