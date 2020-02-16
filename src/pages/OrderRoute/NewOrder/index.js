@@ -14,14 +14,7 @@ import Background from '~/components/Background';
 import api from '~/services/api';
 import { saveAddress } from '~/store/modules/address/actions';
 
-import {
-  Container,
-  Tip,
-  Label,
-  FormAmountInput,
-  SubmitButton,
-  Form,
-} from './styles';
+import { Container, Tip, Label, FormInput, SubmitButton, Form } from './styles';
 
 export default function NewOrder({ navigation }) {
   const dispatch = useDispatch();
@@ -80,6 +73,12 @@ export default function NewOrder({ navigation }) {
       await api.post('partner_form_order', {
         form_id: selectedForm,
         amount,
+        address,
+        number,
+        compl,
+        city,
+        uf: UF,
+        cep: CEP,
       });
       Alert.alert('Sucesso!', 'Sua solicitação foi realizada');
       dispatch(saveAddress(address, number, compl, city, UF, CEP));
@@ -103,7 +102,7 @@ export default function NewOrder({ navigation }) {
     <Background>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <Container>
-          <ScrollView style={{ flex: 1 }}>
+          <ScrollView style={{ flex: 1, marginTop: 50 }}>
             <Tip>
               Preencha abaixo o endereço e as quantidades de formulários que
               deseja
@@ -125,7 +124,7 @@ export default function NewOrder({ navigation }) {
                 dropdownPosition={0}
               />
               <Label>Quantidade de formulários:</Label>
-              <FormAmountInput
+              <FormInput
                 placeholder="000"
                 keyboardType="number-pad"
                 returnKeyType="next"
@@ -135,7 +134,7 @@ export default function NewOrder({ navigation }) {
                 onSubmitEditing={() => addressRef.current.focus()}
               />
               <Label>Endereço de destino:</Label>
-              <FormAmountInput
+              <FormInput
                 placeholder="Endereço"
                 autoCorrect={false}
                 autoCapitalize="words"
@@ -145,7 +144,7 @@ export default function NewOrder({ navigation }) {
                 value={address}
                 onChangeText={setAddress}
               />
-              <FormAmountInput
+              <FormInput
                 placeholder="Número"
                 maxLength={5}
                 keyboardType="number-pad"
@@ -155,7 +154,7 @@ export default function NewOrder({ navigation }) {
                 value={number}
                 onChangeText={setNumber}
               />
-              <FormAmountInput
+              <FormInput
                 placeholder="Complemento"
                 autoCorrect={false}
                 ref={complRef}
@@ -164,7 +163,7 @@ export default function NewOrder({ navigation }) {
                 value={compl}
                 onChangeText={setCompl}
               />
-              <FormAmountInput
+              <FormInput
                 placeholder="Cidade"
                 ref={cityRef}
                 autoCapitalize="words"
@@ -173,7 +172,7 @@ export default function NewOrder({ navigation }) {
                 value={city}
                 onChangeText={setCity}
               />
-              <FormAmountInput
+              <FormInput
                 placeholder="UF"
                 maxLength={2}
                 autoCorrect={false}
@@ -184,7 +183,7 @@ export default function NewOrder({ navigation }) {
                 value={UF}
                 onChangeText={setUF}
               />
-              <FormAmountInput
+              <FormInput
                 placeholder="CEP"
                 keyboardType="number-pad"
                 maxLength={9}

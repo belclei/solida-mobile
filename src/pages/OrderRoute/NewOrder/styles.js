@@ -8,13 +8,13 @@ export const Container = styled.SafeAreaView`
 export const Form = styled.View`
   flex: 1;
   justify-content: flex-end;
+  padding-bottom: 50px;
 `;
 export const Tip = styled.Text`
-  margin-top: 50px;
   padding: 0 20px;
   color: #fff;
 `;
-export const FormAmountInput = styled(Input)`
+export const FormInput = styled(Input)`
   margin: 5px 20px;
   padding: 0;
 `;
