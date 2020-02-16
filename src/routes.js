@@ -69,7 +69,7 @@ export default (signed = false, profile = null) => {
                 tabBarVisible: true,
                 tabBarLabel: 'Pedidos',
                 tabBarIcon: ({ tintColor }) => (
-                  <Icon name="tasks" size={20} color={tintColor} />
+                  <Icon name="list" size={20} color={tintColor} />
                 ),
               },
             },
