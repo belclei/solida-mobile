@@ -8,7 +8,6 @@ import { Container, A, Header, Origin, Content, Time } from './styles';
 export default function ReportDetail({ navigation }) {
   const data = navigation.getParam('data');
   const dateParsed = navigation.getParam('dateParsed');
-  console.tron.warn(data.link);
   return (
     <Background>
       <Container>
