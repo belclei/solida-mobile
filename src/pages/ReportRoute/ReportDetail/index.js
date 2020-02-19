@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Linking } from 'react-native';
+import { TouchableOpacity, Linking, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Background from '~/components/Background';
 
@@ -17,8 +17,10 @@ export default function ReportDetail({ navigation }) {
             <A onPress={() => Linking.openURL(data.link)}>Ver no site</A>
           )}
         </Header>
-        <Content>{data.content}</Content>
-        <Time>{dateParsed}</Time>
+        <ScrollView style={{ flex: 1, marginBottom: 10 }}>
+          <Content>{data.content}</Content>
+          <Time>{dateParsed}</Time>
+        </ScrollView>
       </Container>
     </Background>
   );

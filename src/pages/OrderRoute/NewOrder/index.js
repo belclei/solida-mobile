@@ -69,6 +69,9 @@ export default function NewOrder({ navigation }) {
         Alert.alert('A quantidade precisa ser positiva!');
         return;
       }
+      if (!parseInt(number) || number < 0) {
+        setNumber('S/N');
+      }
 
       await api.post('partner_form_order', {
         form_id: selectedForm,

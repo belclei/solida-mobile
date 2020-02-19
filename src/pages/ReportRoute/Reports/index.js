@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'react-native-material-dropdown';
+import { withNavigationFocus } from 'react-navigation';
 import Background from '~/components/Background';
 import { Container, List } from './styles';
 import Report from '~/components/Report';
-
 import api from '~/services/api';
 
-export default function Reports({ navigation }) {
+function Reports({ navigation, isFocused }) {
   const [reports, setReports] = useState([]);
   const [origins, setOrigins] = useState([]);
   const [selectedOrigin, setSelectedOrigin] = useState(null);
@@ -24,7 +24,7 @@ export default function Reports({ navigation }) {
        * para o componente dropdown
        */
       if (origins.length < 1) {
-        const originsFiltered = response.data.reduce(
+        const originsFiltered = reports.reduce(
           (unique, item) => {
             const aux = { label: item.origin, value: item.origin };
             return unique.some(obj => obj.value === aux.value)
@@ -36,8 +36,10 @@ export default function Reports({ navigation }) {
         setOrigins(originsFiltered);
       }
     }
-    loadReports();
-  }, [origins, selectedOrigin]);
+    if (isFocused) {
+      loadReports();
+    }
+  }, [isFocused, origins, reports, selectedOrigin]);
 
   return (
     <Background>
@@ -70,3 +72,5 @@ Reports.navigationOptions = ({ navigation }) => {
     title: 'Comunicados',
   };
 };
+
+export default withNavigationFocus(Reports);

@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
+import { withNavigationFocus } from 'react-navigation';
 import Background from '~/components/Background';
 import Order from '~/components/Order';
 import { Container, List } from './styles';
 import api from '~/services/api';
 
-export default function Orders() {
+function Orders({ isFocused }) {
   const [orders, setOrders] = useState([]);
 
+  async function loadOrders() {
+    const response = await api.get('partner_form_order');
+    setOrders(response.data);
+  }
+
   useEffect(() => {
-    async function loadOrders() {
-      const response = await api.get('partner_form_order');
-      console.tron.log(response.data);
-      setOrders(response.data);
+    if (isFocused) {
+      loadOrders();
     }
-    loadOrders();
-  }, []);
+  }, [isFocused]);
 
   return (
     <Background>
@@ -47,3 +50,5 @@ Orders.navigationOptions = ({ navigation }) => {
     ),
   };
 };
+
+export default withNavigationFocus(Orders);

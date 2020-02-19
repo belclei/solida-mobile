@@ -76,6 +76,7 @@ export default (signed = false, profile = null) => {
             Profile,
           },
           {
+            resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: '#FFF',
