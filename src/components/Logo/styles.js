@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
-export const Text = styled.Text`
-  color: #fff;
-  font-weight: bold;
-  font-size: 24px;
+export const ImageLogo = styled.Image`
+  resize-mode: contain;
+  width: 90%;
+  tint-color: #fff;
 `;

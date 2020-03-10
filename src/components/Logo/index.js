@@ -1,7 +1,6 @@
 import React from 'react';
-
-import { Text } from './styles';
+import { ImageLogo } from './styles';
 
 export default function Logo() {
-  return <Text>SÓLIDA</Text>;
+  return <ImageLogo source={require('~/assets/solida-logo.png')} />;
 }
