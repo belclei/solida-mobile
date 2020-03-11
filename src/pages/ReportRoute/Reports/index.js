@@ -23,23 +23,21 @@ function Reports({ navigation, isFocused }) {
        * formatando em um array no formato necessário
        * para o componente dropdown
        */
-      if (origins.length < 1) {
-        const originsFiltered = reports.reduce(
-          (unique, item) => {
-            const aux = { label: item.origin, value: item.origin };
-            return unique.some(obj => obj.value === aux.value)
-              ? unique
-              : [...unique, aux];
-          },
-          [{ label: 'Todos', value: null }]
-        );
-        setOrigins(originsFiltered);
-      }
+      const originsFiltered = response.data.reduce(
+        (unique, item) => {
+          const aux = { label: item.origin, value: item.origin };
+          return unique.some(obj => obj.value === aux.value)
+            ? unique
+            : [...unique, aux];
+        },
+        [{ label: 'Todos', value: null }]
+      );
+      setOrigins(originsFiltered);
     }
     if (isFocused) {
       loadReports();
     }
-  }, [isFocused, origins, reports, selectedOrigin]);
+  }, [isFocused, selectedOrigin]);
 
   return (
     <Background>
