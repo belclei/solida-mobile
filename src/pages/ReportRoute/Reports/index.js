@@ -11,6 +11,18 @@ function Reports({ navigation, isFocused }) {
   const [origins, setOrigins] = useState([]);
   const [selectedOrigin, setSelectedOrigin] = useState(null);
 
+  function filterOrigins(reportList) {
+    return reportList.reduce(
+      (unique, item) => {
+        const aux = { label: item.origin, value: item.origin };
+        return unique.some(obj => obj.value === aux.value)
+          ? unique
+          : [...unique, aux];
+      },
+      [{ label: 'Todos', value: null }]
+    );
+  }
+
   useEffect(() => {
     async function loadReports() {
       const response = await api.get('partner_reports', {
@@ -19,20 +31,7 @@ function Reports({ navigation, isFocused }) {
         },
       });
       setReports(response.data);
-      /** Filtra origens que retornaram da api,
-       * formatando em um array no formato necessário
-       * para o componente dropdown
-       */
-      const originsFiltered = response.data.reduce(
-        (unique, item) => {
-          const aux = { label: item.origin, value: item.origin };
-          return unique.some(obj => obj.value === aux.value)
-            ? unique
-            : [...unique, aux];
-        },
-        [{ label: 'Todos', value: null }]
-      );
-      setOrigins(originsFiltered);
+      setOrigins(filterOrigins(response.data));
     }
     if (isFocused) {
       loadReports();
