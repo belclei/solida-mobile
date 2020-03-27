@@ -4,7 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SignUp from './pages/SignUp';
-import Videos from './pages/Videos';
+import Videos from './pages/VideoRoute/Videos';
+import VideoDetail from './pages/VideoRoute/VideoDetail';
 import Orders from './pages/OrderRoute/Orders';
 import NewOrder from './pages/OrderRoute/NewOrder';
 import Profile from './pages/Profile';
@@ -48,7 +49,30 @@ export default (signed = false, profile = null) => {
                 ),
               },
             },
-            Videos,
+            VideoRoute: {
+              screen: createStackNavigator(
+                { Videos, VideoDetail },
+                {
+                  defaultNavigationOptions: {
+                    headerTransparent: true,
+                    headerTintColor: '#FFF',
+                    headerLeftContainerStyle: {
+                      marginLeft: 20,
+                    },
+                    headerRightContainerStyle: {
+                      marginRight: 20,
+                    },
+                  },
+                }
+              ),
+              navigationOptions: {
+                tabBarVisible: true,
+                tabBarLabel: 'Vídeos',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="video-camera" size={20} color={tintColor} />
+                ),
+              },
+            },
             OrderRoute: {
               screen: createStackNavigator(
                 { Orders, NewOrder },
