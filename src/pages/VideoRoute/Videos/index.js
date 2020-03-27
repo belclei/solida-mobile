@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Linking } from 'react-native';
+import { Linking, Text } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Background from '~/components/Background';
 import { Container, List, Message, A } from './styles';
@@ -22,13 +22,17 @@ function Videos({ navigation, isFocused }) {
   return (
     <Background>
       <Container>
-        <List
-          data={videoList}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => {
-            return <Video data={item} navigation={navigation} />;
-          }}
-        />
+        {videoList ? (
+          <List
+            data={videoList}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => {
+              return <Video data={item} navigation={navigation} />;
+            }}
+          />
+        ) : (
+          <Text>Não rolou</Text>
+        )}
       </Container>
     </Background>
   );
