@@ -39,6 +39,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mobile/main.m; sourceTree = "<group>"; };
 		1C97BDEAF4EC8C33C1D5EAB0 /* Pods-mobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-mobile-tvOSTests/Pods-mobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2FDEE8532890ED06B620B143 /* Pods-mobile.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.staging.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.staging.xcconfig"; sourceTree = "<group>"; };
 		489FCB84D9C4A07D095277F3 /* Pods-mobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-mobile-tvOS/Pods-mobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		5468B1CFE3F4953A60C55567 /* libPods-mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E3EC250A682BCB1E25851B /* libPods-mobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +47,7 @@
 		86C1D2B85FDF42F05B91C2FD /* libPods-mobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C27CE759708800F8055D39 /* Pods-mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-mobile-tvOS/Pods-mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		902BA3E58E45ED43DA139083 /* libPods-mobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F7627251D5291BCFECCA1A /* Pods-mobileTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileTests.staging.xcconfig"; path = "Target Support Files/Pods-mobileTests/Pods-mobileTests.staging.xcconfig"; sourceTree = "<group>"; };
 		A9212463E1CDED76F67A71F5 /* Pods-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-mobileTests/Pods-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF92FFC500B05AB85003844F /* Pods-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.debug.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		C435C32F2435592D006149A1 /* Sólida.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Sólida.entitlements"; path = "mobile/Sólida.entitlements"; sourceTree = "<group>"; };
@@ -162,6 +164,8 @@
 				E88C59245DA681FE066F8422 /* Pods-mobile-tvOSTests.release.xcconfig */,
 				A9212463E1CDED76F67A71F5 /* Pods-mobileTests.debug.xcconfig */,
 				7E0C8DD57785917FC0054E50 /* Pods-mobileTests.release.xcconfig */,
+				2FDEE8532890ED06B620B143 /* Pods-mobile.staging.xcconfig */,
+				91F7627251D5291BCFECCA1A /* Pods-mobileTests.staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -687,7 +691,7 @@
 		};
 		C472784D243575A7007CC713 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFCF1596A10C5E97AA42EA11 /* Pods-mobile.release.xcconfig */;
+			baseConfigurationReference = 2FDEE8532890ED06B620B143 /* Pods-mobile.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "mobile/Sólida.entitlements";
@@ -711,7 +715,7 @@
 		};
 		C472784E243575A7007CC713 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E0C8DD57785917FC0054E50 /* Pods-mobileTests.release.xcconfig */;
+			baseConfigurationReference = 91F7627251D5291BCFECCA1A /* Pods-mobileTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
