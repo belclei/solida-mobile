@@ -153,6 +153,8 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
+    /* Comentado para testes de build - Belclei */
+    /*
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -161,9 +163,11 @@ android {
             keyPassword 'android'
         }
     }
+    */
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+            /* Comentado para testes de build - Belclei */
+            //signingConfig signingConfigs.debug
             buildConfigField "String", "CODEPUSH_KEY", '""'
         }
         releaseStaging {
@@ -174,7 +178,8 @@ android {
             buildConfigField "String", "CODEPUSH_KEY", '"bow0AmPyhTLT49VB-gA9fQelchn_XiBHRjYC-"'
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            /* Comentado para testes de build - Belclei */
+            //signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
