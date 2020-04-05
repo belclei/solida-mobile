@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sólida</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">UWPiC7NyXNshEPf8fPLMijliGPSoSX-uiELjZ</string>
 </resources>
